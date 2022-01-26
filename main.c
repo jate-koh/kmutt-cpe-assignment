@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int isNeg(int num);
+int strCheck(char str[]);
 void Converter(int n);
 void SignMagnitude(int n);
 void FirstComp(int n);
@@ -12,28 +12,37 @@ void Print(int ans[],int count);
 
 int main() {
     char str[20];
+    int check=0;
     gets(str);
+    check = strCheck(str); 
+    /* -2 = Negative Zero, -1 = Negative,
+      0 = Positive Zero, 1 = Positive*/
     
-    int n=0,check=0;
-    scanf("%d",&n);
-    printf("%d",n);
-    check = isNeg(n); //0 = Zero, 1 = Positive, -1 = Negative
-    Converter(fabs(n)); 
+    int num = atoi(str);
+    
+    printf("0. Pre-conversion : ");
+    Converter(num);
 
     //printf("1. Sign-and-Magnitude");
-
-
+    
     return 0;
 }
 
-int isNeg(int num) { //0 = Zero, 1 = Positive, -1 = Negative
-    printf("Enter a number: ");
-    scanf("%d", &num);
-    if(num<=0) {
-        if(num == 0) return 0;
-        else return -1;
+int strCheck(char str[]) { 
+    int i=0;
+    if(str[0]=='-') { //Negative
+      for(i=0;i<=strlen(str)-1;i++)
+        str[i] = str[i+1];
+      if(atoi(str)==0) return -2; //Negative Zero
+      else return -1;
     }
-    else return 1;
+    else { //Positive
+      if(str[0]=='+')
+        for(i=0;i<=strlen(str)-1;i++)
+          str[i] = str[i+1];
+      if(atoi(str)==0) return 0; //Positivie Zero
+      else return 1;
+    }
 }
 
 void Converter(int n) {
@@ -47,7 +56,7 @@ void Converter(int n) {
 }
 
 void SignMagnitude(int n) {
-
+    
 }
 
 void FirstComp(int n) {
