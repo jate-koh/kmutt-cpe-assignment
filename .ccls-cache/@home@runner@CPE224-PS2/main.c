@@ -24,10 +24,10 @@ int main() {
     /* -2 = Negative Zero, -1 = Negative,
       0 = Positive Zero, 1 = Positive*/
     
-    printf("Number of bits [More than 4]\n");
+    printf("Number of bits [More than 3]\n");
     scanf("%d",&count);
 
-    while(count<4) {
+    while(count<=3) {
       printf("Please enter number more than 4\n");
       count = 0;
       scanf("%d",&count);
@@ -79,51 +79,47 @@ void FirstComp(int n,int ans[],int check,int count) {
 }
 
 void SecondComp(int n,int ans[],int check,int count) {
-    char str[20];
-    ans[count++] = 0;
-    n -= 1;
-    while(n>0) {
-        ans[count++] = n%2;
-        n = n/2;
+    Converter(n-1,ans,count);
+    if(check==-1 || check==-2) {
+      for(int i = 0; i<count; i++) {
+          if (ans[i] == 0) ans[i] = 1;
+          else ans[i] = 0;
+      }
+      /* for(int i = 0; i<count ; i++)
+      {
+        if(ans[count]==1)
+      {
+          ans[count]=0;
+                if(ans[count-1]==1)
+                      {
+                          ans[count-1]=0;
+                          if(ans[count-2]==1)
+                              {
+                                  ans[count-2]=0;
+                                  if(ans[count-3]==1)
+                                  {
+                                      ans[count-3]=0;
+                                      if(ans[count-4]==1)
+                                      {
+                                          ans[count-4]=0;
+                                          ans[count-5]=1;
+                                      }
+                                      else
+                                          ans[count-4]=1;
+                                  }
+                                  else
+                                      ans[count-3]=1;
+                              }
+                          else
+                              ans[count-2]=1;
+                      }
+                  else
+                      ans[count-1]=1;
+      }
+      else
+          ans[count]=1;
+      } */ 
     }
-    for(int i = 0; i<count; i++) {
-        if (ans[i] == 0) ans[i] = 1;
-        else ans[i] = 0;
-    }
-    /* for(int i = 0; i<count ; i++)
-    {
-      if(ans[count]==1)
-    {
-        ans[count]=0;
-               if(ans[count-1]==1)
-                    {
-                        ans[count-1]=0;
-                        if(ans[count-2]==1)
-                            {
-                                ans[count-2]=0;
-                                if(ans[count-3]==1)
-                                {
-                                    ans[count-3]=0;
-                                    if(ans[count-4]==1)
-                                    {
-                                        ans[count-4]=0;
-                                        ans[count-5]=1;
-                                    }
-                                    else
-                                        ans[count-4]=1;
-                                }
-                                else
-                                    ans[count-3]=1;
-                            }
-                        else
-                            ans[count-2]=1;
-                    }
-                else
-                    ans[count-1]=1;
-    }
-    else
-        ans[count]=1;
-    } */
     Print(ans,count);
 }
 
