@@ -55,16 +55,99 @@ void Converter(int n) {
     Print(ans,count);
 }
 
-void SignMagnitude(int n) {
-    
-}
+/*void SignMagnitude(int n) {
+    int ans[32],count=0,check=0;
+    char str[20];
+    ans[count++] = 0;
+    while(n>0) {
+        ans[count++] = n%2;
+        n = n/2;
+    }
+    if(check == -1 || check == -2)
+    {
+        ans[count]=1;
+    }
+    else{
+        ans[count]=0;
+    }
+    Print(ans,count);
+}*///ยังไม่ถูก
 
 void FirstComp(int n) {
-
+    int ans[32],count=0,check=0;
+    char str[20];
+    ans[count++] = 0;
+    while(n>0) {
+        ans[count++] = n%2;
+        n = n/2;
+    }
+    for(int i = 0; i<count; i++)
+    {
+        if (ans[i] == 0)
+        {
+            ans[i] = 1;
+        }
+        else
+        {
+            ans[i] = 0;
+        }
+    }
+    Print(ans,count);
 }
 
 void SecondComp(int n) {
-
+    int ans[32],count=0,check=0;
+    char str[20];
+    ans[count++] = 0;
+    while(n>0) {
+        ans[count++] = n%2;
+        n = n/2;
+    }
+    for(int i = 0; i<count; i++)
+    {
+        if (ans[i] == 0)
+        {
+            ans[i] = 1;
+        }
+        else
+        {
+            ans[i] = 0;
+        }
+    }
+    for(int i = 0; i<count ; i++)
+    {if(ans[count]==1)
+    {
+        ans[count]=0;
+               if(ans[count-1]==1)
+                    {
+                        ans[count-1]=0;
+                        if(ans[count-2]==1)
+                            {
+                                ans[count-2]=0;
+                                if(ans[count-3]==1)
+                                {
+                                    ans[count-3]=0;
+                                    if(ans[count-4]==1)
+                                    {
+                                        ans[count-4]=0;
+                                        ans[count-5]=1;
+                                    }
+                                    else
+                                        ans[count-4]=1;
+                                }
+                                else
+                                    ans[count-3]=1;
+                            }
+                        else
+                            ans[count-2]=1;
+                    }
+                else
+                    ans[count-1]=1;
+    }
+    else
+        ans[count]=1;
+    }
+    Print(ans,count);
 }
 
 void Print(int ans[],int count) {
