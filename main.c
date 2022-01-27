@@ -12,6 +12,7 @@ void SecondComp(int n,int ans[],int check,int count);
 int strCheck(char str[]);
 void init_array(int ans[],int count);
 void Print(int ans[],int count);
+int bitFinder(int n);
 
 int ans[32];
 
@@ -24,19 +25,21 @@ int main() {
     /* -2 = Negative Zero, -1 = Negative,
       0 = Positive Zero, 1 = Positive*/
     
-    printf("Number of bits [More than 3]\n");
+    /*printf("Number of bits [More than 3]\n");
     scanf("%d",&count);
 
     while(count<=3) {
       printf("Please enter number more than 4\n");
       count = 0;
       scanf("%d",&count);
-    }
+    } */
+    int num = atoi(str);
 
+    count = bitFinder(num);
+    if(count<4) count = 4;
+    
     printf("%d-bits array generated",count);
     Print(ans,count);
-    
-    int num = atoi(str);
     //count = Converter(num,ans,check,count);
     //init_array(ans,count);
     printf("\nI. Sign-and-Magnitude");
@@ -79,8 +82,8 @@ void FirstComp(int n,int ans[],int check,int count) {
 }
 
 void SecondComp(int n,int ans[],int check,int count) {
-    Converter(n-1,ans,count);
     if(check==-1 || check==-2) {
+    Converter(n-1,ans,count);
       for(int i = 0; i<count; i++) {
           if (ans[i] == 0) ans[i] = 1;
           else ans[i] = 0;
@@ -120,6 +123,7 @@ void SecondComp(int n,int ans[],int check,int count) {
           ans[count]=1;
       } */ 
     }
+    else Converter(n,ans,count);
     Print(ans,count);
 }
 
@@ -154,3 +158,14 @@ void Print(int ans[],int count) {
         printf("%d",ans[i]);
     printf("\n");
 }
+
+int bitFinder(int n) {
+  int bit = 1;
+  while(pow(2.00, (double)bit) <= (double)n)
+      bit++; 
+  
+  return bit+1;
+}
+
+//printf("%lf %lf %d\n",pow(2.00, (double)bit),(double)n,pow(2.00, (double)bit) < (double)n);
+//printf("bit %d\n",bit);
