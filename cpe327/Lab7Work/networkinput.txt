@@ -1,0 +1,67 @@
+marisa Marisa Johnson 12-01-1976
+lorelei Lori Rogers 01-01-2000
+walrus Reuben Saunders 09-08-2001
+jerry Jerry Marshall 31-02-2000
+looo Louis Johnson 03-12-1998
+maryMe Mary Anderson 11-08-2001
+babydoll Linda Smith 14-09-1997
+roberta1 Roberta Ho 08-08-1988
+sasparilla Suzy Sommers 17-07-2003
+chaosrules Mark Marshall 16-04-1978
+cathy Catherine Holmes 05-11-2005
+ricky Richard Masterson 30-07-2000
+ricky2 Rick Rogers 18-10-2000
+martham Martha Murray 31-12-2002
+arnie Arnold Schwartznegger 01-02-1964
+joe Joseph Howard 13-05-1999
+lottie Charlotte Smith 14-09-2007
+babalu Sidney Carter 01-12-2001
+huggybear Jenny Jones 03-09-1977
+abby123 Abigail Jackson 17-07-2000
+rogerRabbit Roger Rabbit 09-07-1955
+roberta2 Roberta Henderson 11-11-2000
+whoareyou Carl Doherty 10-06-1995
+morrisTheCat Morris Frank 01-01-1989
+babalu Sidney Carter 01-12-2001
+betty Betty Boop 22-01-1920
+brendaB Brenda Baker 24-07-1989
+alice Alice Smith 19-10-2000
+alice2 Alice Ransom 09-05-2002
+pooh Patty Parker 07-12-2004
+billTheCat William Opper 10-04-1963
+brandon Brandon Potter 14-11-2001
+henry123 Henry Knight 18-01-1993
+jilljones Jill Jones 02-12-1997
+markMMason Mark Mason 09-11-1984
+prudence Prudence Dorrington 17-03-2002
+kathy Katherine Loon 19-02-1983
+kendall Kendall Craik 15-05-2003
+mmorgan Marilyn Morgan 18-09-1991
+FRIEND maryMe babydoll
+FRIEND maryMe roberta1
+FRIEND sasparilla chaosrules
+FRIEND chaosrules huggybear
+FRIEND huggybear cathy
+FRIEND cathy maryMe
+FRIEND arnie lottie
+FRIEND arnie babalu
+FRIEND babydoll billTheCat
+FRIEND billTheCat rogerRabbit
+FRIEND whoareyou brandon
+FRIEND markMMason cathy
+FRIEND roberta2 betty
+FRIEND roberta2 alice
+FRIEND roberta2 alice2
+FRIEND brandon henry123
+FRIEND jilljones chaosrules
+FRIEND jilljones alice2
+FRIEND mmorgan prudence
+FRIEND prudence arnie
+FRIEND lottie jilljones
+FRIEND pooh betty
+FRIEND huggybear abby123
+FRIEND abby123 alice2
+FRIEND jerry looo
+FRIEND sasparilla babalu
+FRIEND ricky roberta2
+FRIEND ricky2 martham
