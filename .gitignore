@@ -1,7 +1,10 @@
 
+.ccls-cache/
 .vscode/
-*.pdf
+
 *.zip
 *.doc
 *.docx
-
+*.pdf
+*.7zip
+*.rar
