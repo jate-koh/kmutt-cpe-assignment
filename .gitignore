@@ -2,7 +2,7 @@
 .ccls-cache/
 .vscode/
 
-*.DS_Store
+.DS_Store
 *.zip
 *.doc
 *.docx
