@@ -1,15 +1,23 @@
 package cpe327.Lab8.source;
 import java.util.Scanner;
 
+
 public class index {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+       //System.out.println("Hello world");
         Scanner input = new Scanner(System.in);
-        Calculator cal = new Calculator();
         
+        System.out.printf("> OPERAND, ");
+        String operand1 = input.nextLine();
+        System.out.printf("> OPERATOR, ");
+        String operator = input.nextLine();
+        System.out.printf("> OPERAND, ");
+        String operand2 = input.nextLine();
+        
+        Calculator cal = new Calculator(operand1,operand2,operator);
+        double answer = cal.calculate();
+        if(cal.error) System.out.println("> ERROR ");
+        else System.out.println("> ANSWER, "+answer);
 
-        System.out.println("Enter fomula ?");
-        cal.fomula = input.nextLine();
-        cal.PrintString();
     }
 }
