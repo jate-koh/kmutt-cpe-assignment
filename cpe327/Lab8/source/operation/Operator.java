@@ -12,14 +12,6 @@ public abstract class Operator {
         this.error = false;
     }
 
-    public double getOperand1() {
-        return this.operand1;
-    }
-
-    public double getOperand2() {
-        return this.operand2;
-    }
-
     public boolean getError() {
         return this.error;
     }
