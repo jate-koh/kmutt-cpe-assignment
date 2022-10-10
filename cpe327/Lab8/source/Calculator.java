@@ -1,6 +1,7 @@
 package cpe327.Lab8.source;
 
 import java.lang.Double;
+
 import cpe327.Lab8.source.operation.*;
 
 public class Calculator {
@@ -10,8 +11,8 @@ public class Calculator {
     private boolean error = false;
 
     public Calculator() {
-        this.operand1 = 0;
-        this.operand2 = 0;
+        this.operand1 = 0.0;
+        this.operand2 = 0.0;
         this.operator = null;
     }
     
