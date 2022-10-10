@@ -10,3 +10,7 @@
 *.7zip
 *.7z
 *.rar
+
+*.xlsx
+*.docx
+*.doc
