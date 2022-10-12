@@ -1,11 +1,15 @@
-package cpe343.assign4;
+package src;
 import java.lang.String;
 
-public class Circle extends GeometricObject{
+public class Circle extends GeometricObject implements Colorable {
     private double radius;
     private double area;
     private double perimeter;
     private double diameter;
+
+    public void howToColor() {
+        System.out.println("Color from center of circle to the round side of circle");
+    }
 
     public Circle() {
         super();

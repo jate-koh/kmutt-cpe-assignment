@@ -1,5 +1,7 @@
-package cpe343.assign4;
+package src.Test1;
 
+import src.Circle;
+import src.Rectangle;
 public class TestCircleRectangle {
     public static void main(String[] args) {
         Circle circle = new Circle(1);

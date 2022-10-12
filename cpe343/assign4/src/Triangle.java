@@ -1,11 +1,15 @@
-package cpe343.assign4;
+package src;
 
-public class Triangle extends GeometricObject {
+public class Triangle extends GeometricObject implements Colorable {
     private double side1;
     private double side2;
     private double side3;
     private double area;
     private double perimeter;
+
+    public void howToColor() {
+        System.out.println("Color all three sides");
+    }
 
     public Triangle() {
         super();

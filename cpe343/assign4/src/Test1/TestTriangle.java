@@ -1,5 +1,7 @@
-package cpe343.assign4;
+package src.Test1;
 
+
+import src.Triangle;
 import java.util.Scanner;
 import java.lang.String;
 
