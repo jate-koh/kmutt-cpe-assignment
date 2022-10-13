@@ -7,8 +7,8 @@ public class Circle extends GeometricObject implements Colorable {
     private double perimeter;
     private double diameter;
 
-    public void howToColor() {
-        System.out.println("Color from center of circle to the round side of circle");
+    public String howToColor() {
+        return "Color from center of circle to the round side of circle";
     }
 
     public Circle() {
@@ -22,12 +22,16 @@ public class Circle extends GeometricObject implements Colorable {
         this.area = this.getArea();
         this.perimeter = this.getPerimeter();
         this.diameter = this.getDiameter();
+        this.compareValue = this.radius;
     }
 
     public Circle(double radius, String color, boolean filled) {
         super(color, filled);
         this.radius = radius;
         this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.diameter = this.getDiameter();
+        this.compareValue = this.radius;
     }
 
     public double getRadius() {

@@ -7,8 +7,8 @@ public class Triangle extends GeometricObject implements Colorable {
     private double area;
     private double perimeter;
 
-    public void howToColor() {
-        System.out.println("Color all three sides");
+    public String howToColor() {
+        return "Color all three sides";
     }
 
     public Triangle() {
@@ -25,6 +25,7 @@ public class Triangle extends GeometricObject implements Colorable {
         this.side3 = side3;
         this.area = this.getArea();
         this.perimeter = this.getPerimeter();
+        this.compareValue = this.area;
     }
 
     public Triangle(double side1, double side2, double side3, String color, boolean filled) {
@@ -34,6 +35,7 @@ public class Triangle extends GeometricObject implements Colorable {
         this.side3 = side3;
         this.area = this.getArea();
         this.perimeter = this.getPerimeter();
+        this.compareValue = this.area;
     }
 
     public double getArea() {

@@ -7,26 +7,35 @@ public class Rectangle extends GeometricObject implements Colorable, Comparable 
     private double area;
     private double perimeter;
 
-    public void howToColor() {
-        System.out.println("Color all four sides");
+    public String howToColor() {
+        return "Color all four sides";
     }
     
     public Rectangle() {
         super();
         this.width = 0;
         this.height = 0;
+        this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.area = this.compareValue;
     }
 
     public Rectangle(double width, double height) {
         super("white",false);
         this.width = width;
         this.height = height;
+        this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.area = this.compareValue;
     }
 
     public Rectangle(double width, double height, String color, boolean filled) {
         super(color,filled);
         this.width = width;
         this.height = height;
+        this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.area = this.compareValue;
     }
 
     public double getWidth() {

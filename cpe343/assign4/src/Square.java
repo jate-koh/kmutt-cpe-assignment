@@ -5,8 +5,8 @@ public class Square extends GeometricObject implements Colorable {
     private double area;
     private double perimeter;
 
-    public void howToColor() {
-        System.out.println("Color all four sides");
+    public String howToColor() {
+        return "Color all four sides";
     }
     
     public Square() {
@@ -17,11 +17,17 @@ public class Square extends GeometricObject implements Colorable {
     public Square(double side) {
         super("white",false);
         this.side= side;
+        this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.compareValue = this.area;
     }
 
     public Square(double side, String color, boolean filled) {
         super(color,filled);
         this.side = side;
+        this.area = this.getArea();
+        this.perimeter = this.getPerimeter();
+        this.compareValue = this.area;
     }
 
     public double getside() {
