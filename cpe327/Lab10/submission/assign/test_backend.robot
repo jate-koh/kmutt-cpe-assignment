@@ -9,6 +9,6 @@ ${path}    /#/pet/findByStatus
 Request using GET to find pet: 63070501013 Jatetanan
     Create Session    post_find_pet   ${url}    disable_warnings=1
     &{category_data}=     Create Dictionary       id=0                      name=string        
-    &{json_data}=         Create Dictionary       id=9222968140497181000    category= &{category_data}
-    ${response}=          GET                     ${url}                    available
+    &{json_data}=         Create Dictionary       id=9222968140497181000    category=&{category_data}
+    ${response}=          GET                     ${url}                    params=available            json=&{json_data}
     Should Be Equal As Strings   ${response.status_code}    200
