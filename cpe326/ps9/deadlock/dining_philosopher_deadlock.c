@@ -16,9 +16,16 @@
 #define AVAILABLE 1
 #define UNAVAILABLE 0
 
+/* Enforcer (Range: 0-3)
+* Rate how much will the program force 
+* philosopher to pick up left fork 
+* - Higher Enforcing, meant quicker deadlock 
+* - 0: Give maximum freedom, deadlock is unlikely to occur */
+#define ENFORCER 2
+
 int state[N];
 int forkstate[N];
-int waitCount = 0;
+int enforcer = 0;
 int phil[N] = { 0, 1, 2, 3, 4 }; //Array of Philosophers
  
 sem_t mutex;
@@ -41,7 +48,7 @@ void waitRight(int ph_num) {
 
 void waitLeft(int ph_num) {
     printf("Philosopher %d is waiting for left fork %d\n", ph_num+1, LEFT+1);
-    waitCount++;
+    enforcer++;
     do {
         sem_wait(&S[ph_num]);
     } 
@@ -80,10 +87,9 @@ void getFork(int ph_num) {
     sem_wait(&mutex);
     state[ph_num] = HUNGRY;
     printf("\n**** Philosopher %d is Hungry ****\n\n", ph_num+1);
-    do { getLeftFork(ph_num); } while(waitCount < 5); 
+    do { getLeftFork(ph_num); } while(enforcer < ENFORCER);
     /* Forced Every Philosopher to pick up left fork first
     * Deadlock occured: circle path, last Philosopher can't pick up right fork */
-
     sem_post(&mutex);
 
     sem_wait(&mutex);
@@ -109,13 +115,14 @@ void* philosopher(void* num) {
         sleep(2); //think
         getFork(*number);
         eat(*number);
+        enforcer = 0;
         putFork(*number);
     }
 
 }
 
 int main() {
-    printf("**** Dining Philosopher (No Deadlock) ****\n");
+    printf("**** Dining Philosopher (/w Deadlock) ****\n");
      printf("**** Written by 1005, 1013, 1014, 1016, 1019 ****\n\n");
 
 
