@@ -1,8 +1,11 @@
-
+# VS Code
 .ccls-cache/
 .vscode/
 
+# Mac OS
 .DS_Store
+
+# General Files
 *.zip
 *.doc
 *.docx
@@ -10,7 +13,10 @@
 *.7zip
 *.7z
 *.rar
-
 *.xlsx
-*.docx
-*.doc
+
+# Java
+*.jar
+.classpath
+/.settings/
+/bin/

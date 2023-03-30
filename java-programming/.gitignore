@@ -1,0 +1,16 @@
+# Zip Files
+*.zip*
+*.rar*
+*.7z*
+
+# Eclipses
+.classpath*
+.project*
+
+# Folders
+.settings/
+.idea/
+.metadata/
+bin/
+class/
+classes/
