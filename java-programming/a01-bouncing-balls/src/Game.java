@@ -26,11 +26,12 @@ public class Game {
         if (gameBackground != null ) this.gamePanel.changeColor(gameBackground);
     }
 
-    public void setupSpawner(int maxDiameter) {
+    public void setupSpawner(int maxDiameter, int maxSpeed) {
 
         // Create a Spawner object
         InternalSpawner spawner = new InternalSpawner();
         spawner.setMaxDiameter(maxDiameter);
+        spawner.setMaxVelocity(maxSpeed);
         spawner.setFrame(this.gamePanel);
 
         // Add the Spawner object to the GamePanel object

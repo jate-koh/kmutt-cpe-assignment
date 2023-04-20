@@ -12,7 +12,8 @@ public class Main {
     private static final Color GAME_BACKGROUND = Color.WHITE;
 
     // Element Spawn Properties
-    public static final int MAX_DIAMETER = 20;
+    public static final int MAX_DIAMETER = 100;
+    public static final int MAX_SPEED = 20;
 
     public static void main(String[] args) {
         // Instantiate a Game object
@@ -20,6 +21,6 @@ public class Main {
 
         // Setup Game
         game.setupBackgroud(OUTER_BACKGROUND, GAME_BACKGROUND);
-        game.setupSpawner(MAX_DIAMETER);
+        game.setupSpawner(MAX_DIAMETER, MAX_SPEED);
     }
 }

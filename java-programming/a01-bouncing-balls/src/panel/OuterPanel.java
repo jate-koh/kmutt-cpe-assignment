@@ -35,7 +35,7 @@ public class OuterPanel extends JFrame {
     }
 
     public void changeColor(Color color) {
-        this.getContentPane().setBackground(color);
+        this.setBackground(color);
     }
 
     public void addPanel(JPanel panel) {
