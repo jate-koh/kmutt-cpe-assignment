@@ -8,6 +8,7 @@
 .project*
 
 # Folders
+out/
 .settings/
 .idea/
 .metadata/
