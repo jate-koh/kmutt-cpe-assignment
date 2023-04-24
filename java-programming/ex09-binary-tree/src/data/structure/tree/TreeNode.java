@@ -15,4 +15,28 @@ public class TreeNode<T> {
         this.left = left;
         this.right = right;
     }
+
+    public T getData() {
+        return this.data;
+    }
+
+    public TreeNode<T> getLeft() {
+        return this.left;
+    }
+
+    public TreeNode<T> getRight() {
+        return this.right;
+    }
+
+    public boolean isLeaf() {
+        return this.left == null && this.right == null;
+    }
+
+    public boolean hasLeft() {
+        return this.left != null;
+    }
+
+    public boolean hasRight() {
+        return this.right != null;
+    }
 }
