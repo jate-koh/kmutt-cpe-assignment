@@ -36,8 +36,7 @@ public class Logger {
         log = "Cause: " + exception.getCause();
         System.out.println(log);
 
-        log = "Stack Trace: " + exception.getStackTrace();
-        System.out.println(log);
+        exception.printStackTrace();
     }
 
     private static String getTimeStamps() {
