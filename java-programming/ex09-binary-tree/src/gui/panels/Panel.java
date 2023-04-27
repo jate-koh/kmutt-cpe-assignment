@@ -29,6 +29,6 @@ public abstract class Panel extends JPanel {
      * This method is called in the constructor of the class that extends this class.
      * This method is abstract, so it must be implemented in the class that extends this class.
      */
-    public abstract void initComponents();
+    protected abstract void initComponents();
 
 }

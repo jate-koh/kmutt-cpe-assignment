@@ -12,7 +12,7 @@ public class TreePanel extends Panel {
         this.setVisible(true);
     }
 
-    public void initComponents() {
+    protected void initComponents() {
         this.treeFrame = new JInternalFrame();
         this.treeFrame.setVisible(true);
         this.treeFrame.setResizable(true);

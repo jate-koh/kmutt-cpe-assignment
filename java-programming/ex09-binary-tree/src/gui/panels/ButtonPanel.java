@@ -10,12 +10,12 @@ public class ButtonPanel extends Panel {
     private JButton searchButton;
     private JButton clearButton;
 
-    public ButtonPanel() {
-        super(new GridLayout(1, 4), Color.WHITE);
+    public ButtonPanel(int row, int column) {
+        super(new GridLayout(row, column), Color.WHITE);
         this.setVisible(true);
     }
 
-    public void initComponents() {
+    protected void initComponents() {
         this.clearButton = new JButton("Clear");
         this.clearButton.setVisible(true);
 
