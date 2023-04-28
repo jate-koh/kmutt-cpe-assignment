@@ -17,6 +17,9 @@ public class Main {
         IntegerTree intTree = new IntegerTree(10);
         intTree.setLimit(LOOP_LIMIT);
 
+        // Insert some numbers into the tree
+        intTree.insert(9);
+        intTree.insert(8);
         intTree.insert(5);
         intTree.insert(15);
         intTree.insert(3);
@@ -24,11 +27,16 @@ public class Main {
 
         intTree.printLog();
 
-        intTree.remove(5);
-        intTree.printLog();
-        intTree.remove(15);
-        intTree.printLog();
+        try {
+            intTree.searchPath(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+//        intTree.remove(5);
+//        intTree.printLog();
+//        intTree.remove(15);
+//        intTree.printLog();
 
 //        // Insert random numbers into the tree
 //        Random random = new Random();

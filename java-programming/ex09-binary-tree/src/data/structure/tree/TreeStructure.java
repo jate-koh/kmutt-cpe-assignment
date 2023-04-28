@@ -134,6 +134,7 @@ public abstract class TreeStructure<T> implements TraversableTree<T>, AVLTree<T>
 
     public TreeNode<T> remove(T data) throws IllegalArgumentException {
 
+        // If data is not comparable, throw exception
         if (!(data instanceof Comparable)) throw new IllegalArgumentException("Data is not comparable");
 
         // Start Recursive Remove Function
@@ -142,10 +143,12 @@ public abstract class TreeStructure<T> implements TraversableTree<T>, AVLTree<T>
 
     private TreeNode<T> removeRec(TreeNode<T> root, T data) {
 
+        // If root is null, return root
         if (root == null) {
             return root;
         }
 
+        // Recursively search for node to remove
         if (((Comparable<T>)data).compareTo(root.getData()) == -1) {
             root.setLeft(removeRec(root.getLeft(), data));
         } else if (((Comparable<T>)data).compareTo(root.getData()) == 1) {
@@ -177,6 +180,193 @@ public abstract class TreeStructure<T> implements TraversableTree<T>, AVLTree<T>
         return minValue;
     }
 
+//    public TreeNode<T> remove(T data) throws LimitExceededException ,IllegalArgumentException {
+//        int loopCount = 0;
+//
+//        // If data is not comparable, throw exception
+//        if (!(data instanceof Comparable)) {
+//            throw new IllegalArgumentException("Data is not comparable");
+//        }
+//
+//        // If root is null or data is null, end function
+//        if (root == null) return null;
+//
+//        // Search for node to remove
+//        Logger.logMessage("Searching for Node {" + data + "} to remove...", this);
+//        TreeNode<T> current = this.search(data);
+//
+//        // If node is not found, end function
+//        if (current == null)  {
+//            Logger.logMessage("Node for {" + data + "} not found", this);
+//            return null;
+//        }
+//
+//        Logger.logMessage("Node for {" + current.getData() + "} found", this);
+//
+//        // If it is node with one child or no child
+//
+//
+
+//        /* Case 1:
+//         * If node has no children, remove node right away and decrease size
+//         * */
+//        if (current.hasLeft() == false && current.hasRight() == false) {
+//            Logger.logMessage(
+//                    "Node {" + current.getData() + "} has no children, entering case 1",
+//                    this
+//            );
+//            // If node is root, set root to null
+//            if (current == root) {
+//                // Set root to null and decrease size
+//                root = null;
+//                size--;
+//                return null;
+//            }
+//
+//            // If node is not root, remove node
+//            if (current.getParent().getLeft() == current) {
+//                // Set left child of parent to null
+//                current.getParent().setLeft(null);
+//            } else {
+//                // Set right child of parent to null
+//                current.getParent().setRight(null);
+//            }
+//            size--;
+//            return current.getParent();
+//        }
+//
+//        /* Case 2:
+//         *  If node has only left child, replace node with left child
+//         * */
+//        if (current.hasLeft() == true && current.hasRight() == false) {
+//            Logger.logMessage(
+//                    "Node {" + current.getData() + "} has only left child, entering case 2",
+//                    this
+//            );
+//            // If node is root, set root to left child
+//            if (current == root) {
+//                // Set root to left child
+//                root = current.getLeft();
+//                size--;
+//                return root;
+//            }
+//
+//            // If node is not root, replace node with left child
+//            if (current.getParent().getLeft() == current) {
+//                // Set left child of parent to left child of node
+//                current.getParent().setLeft(current.getLeft());
+//
+//            } else {
+//                // Set right child of parent to left child of node
+//                current.getParent().setRight(current.getLeft());
+//            }
+//            size--;
+//            return current.getParent();
+//        }
+//
+//        /** Case 3:
+//         *  If node has only right child, replace node with right child
+//         * */
+//        if (current.hasLeft() == false && current.hasRight() == true) {
+//            Logger.logMessage(
+//                    "Node {" + current.getData() + "} has only right child, entering case 3",
+//                    this
+//            );
+//            // If node is root, set root to right child
+//            if (current == root) {
+//                // Set root to right child
+//                root = current.getRight();
+//            }
+//
+//            // If node is not root, replace node with right child
+//            if (current.getParent().getLeft() == current) {
+//                // Set left child of parent to right child of node
+//                current.getParent().setLeft(current.getRight());
+//
+//            } else {
+//                // Set right child of parent to right child of node
+//                current.getParent().setRight(current.getRight());
+//            }
+//            size--;
+//            return current.getParent();
+//        }
+//
+//        /** Case 4:
+//         *  If node has both left and right child, replace node with successor
+//         * */
+//        if (current.hasLeft() == true && current.hasLeft() == true ) {
+//            Logger.logMessage(
+//                    "Node {" + current.getData() + "} has both left and right child, entering case 4",
+//                    this
+//            );
+//
+//            TreeNode<T> successor = current.getRight();
+//
+//            /* Case 4.1:
+//             * If successor is right child of node, replace node with successor
+//             * */
+//            if (successor == current.getRight()) {
+//
+//                // If node is root, set root to successor
+//                if (current == root) {
+//                    // Set root to successor
+//                    root = successor;
+//                    size--;
+//                    return root;
+//                }
+//
+//                // If node is not root, replace node with successor
+//                if (current.getParent().getLeft() == current) {
+//                    // Set left child of parent to successor
+//                    current.getParent().setLeft(successor);
+//
+//                } else {
+//                    // Set right child of parent to successor
+//                    current.getParent().setRight(successor);
+//                }
+//                size--;
+//                return current.getParent();
+//            }
+//
+//            /* Case 4.2:
+//             * If successor is not right child of node, replace successor with its right child
+//             * */
+//            if (successor.getParent().getLeft() == successor) {
+//                // Set left child of parent to right child of successor
+//                successor.getParent().setLeft(successor.getRight());
+//
+//            } else {
+//                // Set right child of parent to right child of successor
+//                successor.getParent().setRight(successor.getRight());
+//            }
+//
+//            /* Case 4.2.1:
+//             * If node is root, set root to successor
+//             * */
+//            if (current == root) {
+//                // Set root to successor and decrease size
+//                root = successor;
+//                size--;
+//                return root;
+//            }
+//
+//            /* Case 4.2.2:
+//             * If node is not root, replace node with successor
+//             * */
+//            if (current.getParent().getLeft() == current) {
+//                // Set left child of parent to successor and decrease size
+//                current.getParent().setLeft(successor);
+//
+//            } else {
+//                // Set right child of parent to successor and decrease size
+//                current.getParent().setRight(successor);
+//            }
+//            size--;
+//            return current.getParent();
+//        }
+//        return null;
+//    }
+
     /** Search for data in tree.
      * @param data Data to search for in tree.
      * @return Node containing data, or null if data does not exist.
@@ -185,8 +375,6 @@ public abstract class TreeStructure<T> implements TraversableTree<T>, AVLTree<T>
      * */
     public TreeNode<T> search(T data) throws LimitExceededException {
         int loopCount = 0;
-        StringBuilder path = new StringBuilder("Path: ");
-
 
         // If data is not comparable, throw exception
         if (!(data instanceof Comparable)) {
@@ -246,7 +434,7 @@ public abstract class TreeStructure<T> implements TraversableTree<T>, AVLTree<T>
         updateHeight(node);
 
         int balanceFactor = balanceFactor(node);
-        Logger.logMessage("Balance factor of {" + node.getData() + "} is " + balanceFactor);
+        Logger.logMessage("Balance factor of {" + node.getData() + "} is " + balanceFactor, this);
 
         // Left-heavy
         if (balanceFactor < -1) {
