@@ -1,11 +1,12 @@
-package data.structure.tree;
+package data.structure.tree.node;
 
-public class TreeNode<T> implements Comparable {
+public class TreeNode<T> implements Comparable, AVLNode {
 
     private T data;
     private TreeNode<T> left;
     private TreeNode<T> right;
     private TreeNode<T> parent;
+    private int height;
 
     public TreeNode(T data) {
         this(data, null, null);
@@ -72,4 +73,14 @@ public class TreeNode<T> implements Comparable {
         }
         return 0;
     }
+
+    /* Functions for AVL Nodes */
+    public int getHeight() {
+        return this.height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
 }

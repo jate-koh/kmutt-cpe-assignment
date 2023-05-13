@@ -1,9 +1,13 @@
 package data.structure.tree;
 
+import com.sun.source.tree.Tree;
+import data.structure.tree.node.TreeNode;
+import utils.Logger;
+import utils.TreePrinter;
+
 import javax.naming.LimitExceededException;
 
 public class IntegerTree extends TreeStructure<Integer> {
-
 
     public IntegerTree() {
         super();
@@ -13,175 +17,122 @@ public class IntegerTree extends TreeStructure<Integer> {
         super(root);
     }
 
-    public void insert(Integer data) throws LimitExceededException {
+    public TreeNode<Integer> insert(Integer data) {
+        TreeNode<Integer> node = null;
+        try {
+            node = super.insert(data);
+            super.updateHeight(node);
+            node = super.rebalance(root);
+            this.setRoot(node);
+        } catch (Exception exception) {
+            Logger.logError(
+                    "Error inserting data into tree: " + exception.getMessage(),
+                    this,
+                    exception
+            );
+            return null;
+        }
+        Logger.logMessage("Inserted " + data + " into tree", this);
+        return node;
+    }
+
+    public TreeNode<Integer> remove(Integer data) {
+        TreeNode<Integer> node = null;
+        try {
+            node = super.remove(data);
+            super.updateHeight(node);
+            node = super.rebalance(root);
+            this.setRoot(node);
+        } catch (Exception exception) {
+            Logger.logError(
+                    "Error removing data from tree: " + exception.getMessage(),
+                    this,
+                    exception
+            );
+            return null;
+        }
+        return node;
+    }
+
+    public StringBuilder searchPath(Integer data) throws IllegalArgumentException, LimitExceededException {
+        if ( root == null ) {
+            Logger.logMessage("Tree is empty", this);
+            return null;
+        }
+
+        if ( !(data instanceof Comparable<?>) )
+            throw new IllegalArgumentException("Data must be comparable");
+
+        Logger.logMessage("Searching for " + data + " in tree", this);
+        StringBuilder path = new StringBuilder("[Path] ");
         int loopCount = 0;
 
-        // If root is null, create new root
-        if (root == null) {
-            root = new TreeNode<Integer>(data);
-            size++;
-            return;
-        }
-
-        // If root is not null, find the right place to insert
         TreeNode<Integer> current = root;
-        while (true) {
-            // Check if loop has exceeds specified limit
+        path.append( "Root: " + current.getData()).append(" ");
+
+        while ( current != null ) {
             this.hasExceedLimit(loopCount++);
+            // If data is found, return the path
+            if ( current.getData().compareTo(data) == 0 ) {
+                path.append("-> (Found " + data + ")");
+                Logger.logMessage("Found " + data + " in tree", this);
+                Logger.logMessage(path.toString(), this);
+                return path;
+            }
 
-            // If data is smaller than current node, go left
-            if (data < current.getData()) {
-                // If left child is null, insert new node
-                if (current.getLeft() == null) {
-
-                    // Set left child of current node
-                    current.setLeft(new TreeNode<Integer>(data));
-
-                    // Set parent of new node and increase size
-                    current.getLeft().setParent(current);
-                    size++;
-                    return;
-                }
-
-                // If left child is not null, move down
-                moveDownLeft(current);
-
-            // If data is larger than current node, go right
-            } else {
-                // If right child is null, insert new node
-                if (current.getRight() == null) {
-                    // Set right child of current node
-                    current.setRight(new TreeNode<Integer>(data));
-
-                    // Set parent of new node and increase size
-                    current.getRight().setParent(current);
-                    size++;
-                    return;
-                }
-                // If right child is not null, move down
-                moveDownRight(current);
+            // If data is not found, move down the tree
+            // If data is less than current node, move down left. Only if left node exists
+            if (current.hasLeft() && current.getData().compareTo(data) == 1) {
+                current = moveDownLeft(current);
+                path.append("-> Left: " + current.getData() + " ");
+            }
+            // If data is greater than current node, move down right. Only if right node exists
+            else if (current.hasRight() && current.getData().compareTo(data) == -1) {
+                current = moveDownRight(current);
+                path.append("-> Right: " + current.getData() + " ");
+            }
+            // If data no node exists, that data is not in the tree
+            else {
+                path.append("-> (Not found)");
+                current = null;
+                Logger.logMessage("Could not find " + data + " in tree", this);
+                Logger.logMessage(path.toString(), this);
+                return path;
             }
         }
+        return null;
     }
 
-    public void remove(Integer data) throws LimitExceededException {
-        int loopCount = 0;
+    public StringBuilder traverseInorder() {
+        Logger.logMessage("Traversing tree inorder", this);
+        StringBuilder path = new StringBuilder(300);
+        path.append("[Path] ");
+        path.append(traverseInorderRec(root));
 
-        // If root is null or data is null, end function
-        if (root == null) return;
-
-        // If root is not null, find the node to remove
-        TreeNode<Integer> current = root;
-        while (true) {
-            // Check if loop has exceeds specified limit
-            this.hasExceedLimit(loopCount++);
-
-            // If data is smaller than current node, go left
-            if (data < current.getData()) {
-                // If left child is null, data does not exist
-                if (current.getLeft() == null) return;
-
-                // If left child is not null, move down
-                moveDownLeft(current);
-
-            // If data is larger than current node, go right
-            } else if (data > current.getData()) {
-                // If right child is null, data does not exist
-                if (current.getRight() == null) return;
-
-                // If right child is not null, move down
-                moveDownRight(current);
-
-            // If data is equal to current node, remove node
-            } else {
-                // If node has no children, remove node right away and decrease size
-                if (current.getLeft() == null && current.getRight() == null) {
-
-                        // If node is root, set root to null
-                        if (current == root) {
-                            // Set root to null and decrease size
-                            root = null;
-                            size--;
-                            return;
-                        }
-
-                        // If node is not root, remove node
-                        if (current.getParent().getLeft() == current) {
-                            // Set left child of parent to null and decrease size
-                            current.getParent().setLeft(null);
-                            size--;
-                            return;
-
-                        } else {
-                            // Set right child of parent to null and decrease size
-                            current.getParent().setRight(null);
-                            size--;
-                            return;
-                        }
-                }
-
-                // If node has one child, remove node, decrease size, and replace node with child
-                if (current.getLeft() == null || current.getRight() == null) {
-                    // If node is root, set root to child
-                    if (current == root) {
-                        // Set root to child and decrease size
-                        if (current.getLeft() == null) {
-                            root = current.getRight();
-                            size--;
-                            return;
-                        } else {
-                            root = current.getLeft();
-                            size--;
-                            return;
-                        }
-                    }
-
-                    // If node is not root, remove node
-                    if (current.getParent().getLeft() == current) {
-                        // Set left child of parent to child and decrease size
-                        if (current.getLeft() == null) {
-                            current.getParent().setLeft(current.getRight());
-                            size--;
-                            return;
-                        } else {
-                            current.getParent().setLeft(current.getLeft());
-                            size--;
-                            return;
-                        }
-
-                    } else {
-                        // Set right child of parent to child and decrease size
-                        if (current.getLeft() == null) {
-                            current.getParent().setRight(current.getRight());
-                            size--;
-                            return;
-                        } else {
-                            current.getParent().setRight(current.getLeft());
-                            size--;
-                            return;
-                        }
-                    }
-                }
-
-
-            }
-        }
-
-
+        Logger.logMessage("Inorder traversal: " + path.toString(), this);
+        return path;
     }
 
-    public Integer search(Integer data) {
-        return 0;
-    }
+    private StringBuilder traverseInorderRec(TreeNode<Integer> node) {
+        StringBuilder path = new StringBuilder(300);
 
-    public void clear() {
+        path.append(node.getData() + " ");
 
+        if ( node.hasLeft() )
+            path.append(traverseInorderRec(node.getLeft()));
+        if ( node.hasRight() )
+            path.append(traverseInorderRec(node.getRight()));
+
+        return path;
     }
 
     public void printLog() {
-        StringBuilder message = new StringBuilder("Tree Elements: [ ");
-        String buffer = "";
+        // Traverse Tree
+        this.traverseInorder();
 
-
+        // Draw Tree
+        Logger.logMessage("Tree: ", this);
+        TreePrinter.printNode(this.root);
+        Logger.logMessage("*** END ***", this);
     }
 }

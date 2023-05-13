@@ -1,5 +1,7 @@
 package data.structure.tree;
 
+import data.structure.tree.node.TreeNode;
+
 public interface TraversableTree<T> {
 
     /* Functions for moving up and down the tree */
