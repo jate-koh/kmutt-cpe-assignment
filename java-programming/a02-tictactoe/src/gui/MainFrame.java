@@ -1,7 +1,9 @@
 package gui;
 
 import game.XOGame;
+import game.control.GameMode;
 import game.control.Shape;
+import game.control.Turns;
 import gui.panels.GamePanel;
 import gui.panels.MenuPanel;
 import utils.Logger;
@@ -66,6 +68,17 @@ public class MainFrame extends Frame implements ActionListener {
 //        }
         if (checkButtonPressed(event) != null) {
             JButton buttonPressed = checkButtonPressed(event);
+
+            if (this.gameInstance.getTurns() == Turns.COMPUTER ) {
+                Logger.logMessage("Computer is playing!", this, true);
+                return;
+            }
+
+            if (this.gameInstance.isGameDone() == true) {
+                Logger.logMessage("Game is already done! Please clear the board!", this, true);
+                return;
+            }
+
             int index = checkButtonPressedIndex(event);
             if (this.gameInstance.getTurns() == null) {
                 Logger.logMessage("Game has not started yet!", this, true);
@@ -78,9 +91,33 @@ public class MainFrame extends Frame implements ActionListener {
             }
 
             // Print board in console
-            this.gameInstance.getBoard().printBoard();
+            if ( XOGame.DEBUG ) this.gameInstance.getBoard().printBoard();
             this.gameInstance.nextTurn();
         }
+
+        if (event.getSource() == this.menuPanel.getClear()){
+            this.gameInstance.resetGame();
+            Logger.logMessage("Board cleared!", this, true);
+        }
+
+        if (event.getSource() == this.menuPanel.getMode()){
+            switch (this.menuPanel.getMode().getSelectedItem().toString()){
+                case "Player vs Player":
+                    this.gameInstance.setGameMode(GameMode.HUMAN_VS_HUMAN);
+                    Logger.logMessage("Game mode set to Human vs Human!", this, true);
+                    break;
+                case "Player vs Computer":
+                    this.gameInstance.setGameMode(GameMode.HUMAN_VS_COMPUTER);
+                    Logger.logMessage("Game mode set to Human vs Computer!", this, true);
+                    break;
+                default:
+                    Logger.logMessage("Invalid game mode!", this, true);
+                    break;
+            }
+        }
+
+
+
     }
 
     private JButton checkButtonPressed(ActionEvent event) {

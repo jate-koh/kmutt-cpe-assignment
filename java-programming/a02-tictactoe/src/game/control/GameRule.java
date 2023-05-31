@@ -1,7 +1,15 @@
 package game.control;
-
+//==============================================================================
+/* Game Rule
+ * This class is used to enforce the rules of the game.
+ * Every possible winning combination is stored in a 2D array.
+ * Used to check if the game is over, if there is a winner, and if there is a
+ * draw.
+ */
+//==============================================================================
 public class GameRule {
-
+    //==========================================================================
+    // Static Methods
     private static final int[][] WINNING_COMBINATIONS = {
         {0, 1, 2}, // row 1
         {3, 4, 5}, // row 2
@@ -45,5 +53,5 @@ public class GameRule {
         }
         return -1;
     }
-
+    //==========================================================================
 }

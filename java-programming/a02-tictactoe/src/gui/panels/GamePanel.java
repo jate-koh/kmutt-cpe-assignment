@@ -48,6 +48,12 @@ public class GamePanel extends Panel {
 
     }
 
+    public void clearButtons() {
+        for (int i = 0; i < this.buttons.length; i++) {
+            this.buttons[i].setText("");
+        }
+    }
+
     // Getters and Setters
     public void setButtonX(int index) {
         this.buttons[index].setText("X");

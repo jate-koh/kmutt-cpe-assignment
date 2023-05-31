@@ -16,11 +16,11 @@ public class StatFrame extends Frame implements ActionListener {
     private JButton clearStat;
 
     public StatFrame(GameStat gameStat) {
-        this("Statistics", 800, 600, gameStat);
+        this("Statistics", 600, 900, gameStat);
     }
 
     public StatFrame(String title, GameStat gameStat) {
-        this(title, 800, 600, gameStat);
+        this(title, 600, 900, gameStat);
     }
 
     public StatFrame(String title, int width, int height, GameStat gameStat) {
