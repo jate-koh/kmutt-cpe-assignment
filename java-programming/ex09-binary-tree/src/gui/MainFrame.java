@@ -58,6 +58,7 @@ public class MainFrame extends JFrame implements ActionListener {
         this.drawFormPanel();
         this.drawTreePanel();
         this.drawButtonPanel();
+        this.addActionListeners();
     }
 
     private void drawFormPanel() {
@@ -75,8 +76,89 @@ public class MainFrame extends JFrame implements ActionListener {
         this.add(this.buttonPanel, BorderLayout.SOUTH);
     }
 
+    private void addActionListeners() {
+        this.getButtonPanel().getInsertButton().addActionListener(this);
+        this.getButtonPanel().getDeleteButton().addActionListener(this);
+        this.getButtonPanel().getSearchButton().addActionListener(this);
+        this.getButtonPanel().getClearButton().addActionListener(this);
+    }
+
+    public TreePanel getTreePanel() {
+        return this.treePanel;
+    }
+
+    public FormPanel getFormPanel() {
+        return this.formPanel;
+    }
+
+    public ButtonPanel getButtonPanel() {
+        return this.buttonPanel;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(this.formPanel.getInputField() == null) {
+            this.formPanel.getOutputArea().setText("Please enter a value in the input field.");
+            this.treePanel.append("Please enter a value in the input field.");
+            return;
+        }
 
+        if (e.getSource() == this.getButtonPanel().getInsertButton()) {
+
+            // Get the data from the input field
+            Integer data = Integer.parseInt(this.formPanel.getInputField().getText());
+            this.getTreePanel().getTree().insert(data);
+
+            // Re-draw the tree
+            this.getTreePanel().drawTree();
+
+            // Reset the input field
+            this.formPanel.getInputField().setText("");
+
+        } else if (e.getSource() == this.getButtonPanel().getDeleteButton()) {
+
+            // Get the data from the input field
+            Integer data = Integer.parseInt(this.formPanel.getInputField().getText());
+            this.getTreePanel().getTree().remove(data);
+
+            // Re-draw the tree
+            this.getTreePanel().drawTree();
+
+            // Reset the input field
+            this.formPanel.getInputField().setText("");
+
+        } else if (e.getSource() == this.getButtonPanel().getSearchButton()) {
+            StringBuilder answer = new StringBuilder();
+
+            // Get the data from the input field
+            Integer data = Integer.parseInt(this.formPanel.getInputField().getText());
+            try {
+                answer.append(this.getTreePanel().getTree().searchPath(data));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+            // Set the answer to the output field
+            this.formPanel.getOutputArea().setText(answer.toString());
+
+            // Append new line to the tree panel
+            this.getTreePanel().append("\n");
+
+            // Append the answer to the tree panel
+            this.getTreePanel().append("Path to " + data + ": ");
+            this.getTreePanel().append(answer.toString());
+
+            // Reset the input field
+            this.formPanel.getInputField().setText("");
+
+        } else if (e.getSource() == this.getButtonPanel().getClearButton()) {
+            // Clear all the nodes from the tree
+            this.treePanel.getTree().clear();
+
+            // Clear the tree from the panel
+            this.getTreePanel().clearTree();
+
+            this.formPanel.getOutputArea().setText("");
+        }
     }
 }

@@ -27,9 +27,8 @@ public class GamePanel extends JPanel implements ActionListener {
         this.setBackground(null);
         this.setVisible(true);
 
-
         // Initialize Timer and Start Timer
-        this.timer = new Timer(10, this);
+        this.timer = new Timer(50, this);
         timer.start();
     }
 
@@ -65,11 +64,16 @@ public class GamePanel extends JPanel implements ActionListener {
             if(element instanceof MovingElement<?>) {
                 ((MovingElement<?>) element).move();
 
+                // Calculate insets
+                Insets insets = this.getInsets();
+                int frameWidth = this.getWidth() - insets.left - insets.right;
+                int frameHeight = this.getHeight() - insets.top - insets.bottom;
+
                 // Check if element is out of bounds
-                if (element.getX() < 0 || element.getX() > this.getWidth() - element.getWidth())
+                if (element.getX() < 0 || element.getX() > frameWidth - element.getWidth() )
                     ((MovingElement<?>) element).reverseX();
 
-                if (element.getY() < 0 || element.getY() > this.getHeight() - element.getHeight())
+                if (element.getY() < 0 || element.getY() > frameHeight - element.getHeight() )
                     ((MovingElement<?>) element).reverseY();
 
             }

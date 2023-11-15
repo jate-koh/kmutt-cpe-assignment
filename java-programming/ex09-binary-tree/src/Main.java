@@ -1,5 +1,8 @@
+import com.sun.source.tree.Tree;
 import data.structure.tree.*;
+import gui.MainFrame;
 import utils.Logger;
+import utils.TreePrinter;
 
 import java.util.Random;
 
@@ -25,38 +28,17 @@ public class Main {
         intTree.insert(3);
         intTree.insert(7);
 
+        // Print tree + Create and saved it in tree string in TreePrinter.treeString
         intTree.printLog();
 
-        try {
-            intTree.searchPath(5);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Initialize GUI
+        MainFrame mainFrame = new MainFrame("Binary Tree", 400, 800);
 
-//        intTree.remove(5);
-//        intTree.printLog();
-//        intTree.remove(15);
-//        intTree.printLog();
+        // Set tree in GUI to be the one we created
+        mainFrame.getTreePanel().setTree(intTree);
 
-//        // Insert random numbers into the tree
-//        Random random = new Random();
-//        int buffer = 0;
-//        for (int i = 0; i < 6; i++) {
-//            buffer = random.nextInt(MAX_RANDOM - MIN_RANDOM) + MIN_RANDOM;
-//            Logger.logMessage("Inserting " + buffer + " into tree", intTree);
-//            intTree.insert(buffer);
-//            intTree.printLog();
-//        }
-//        intTree.printLog();
-//
-//        // Remove random numbers from the tree
-//        for (int i = 0; i < 6; i++) {
-//            buffer = random.nextInt(MAX_RANDOM - MIN_RANDOM) + MIN_RANDOM;
-//            Logger.logMessage("Removing " + buffer + " from tree", intTree);
-//            intTree.remove(buffer);
-//            intTree.printLog();
-//        }
-//        intTree.printLog();
+        // Draw tree using BST saved in TreePrinter.treeString
+        mainFrame.getTreePanel().drawTree();
 
     }
 }

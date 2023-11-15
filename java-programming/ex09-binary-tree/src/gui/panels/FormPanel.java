@@ -26,11 +26,20 @@ public class FormPanel extends Panel {
         this.inputField = new JTextField();
         this.inputField.setEditable(true);
         this.outputArea = new JTextField();
+        this.outputArea.setBounds(0, 0, 100, 100);
         this.outputArea.setEditable(false);
 
         this.add(this.inputLabel);
         this.add(this.inputField);
         this.add(this.outputLabel);
         this.add(this.outputArea);
+    }
+
+    public JTextField getOutputArea() {
+        return this.outputArea;
+    }
+
+    public JTextField getInputField() {
+        return this.inputField;
     }
 }

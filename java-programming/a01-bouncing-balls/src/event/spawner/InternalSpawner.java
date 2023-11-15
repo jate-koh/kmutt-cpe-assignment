@@ -14,6 +14,7 @@ public class InternalSpawner extends MouseAdapter implements MouseSpawner<GamePa
     private GamePanel frame;
     private GameElement element;
     private int maxDiameter = 0;
+    private int minDiameter = 0;
     private int maxVelocity = 0;
 
     public InternalSpawner() {
@@ -23,6 +24,10 @@ public class InternalSpawner extends MouseAdapter implements MouseSpawner<GamePa
 
     public void setFrame(GamePanel frame) {
         this.frame = frame;
+    }
+
+    public void setMinDiameter(int minDiameter) {
+        this.minDiameter = minDiameter;
     }
 
     public void setMaxDiameter(int maxDiameter) {

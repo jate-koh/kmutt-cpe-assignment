@@ -18,7 +18,7 @@ public class OuterPanel extends JFrame {
     public OuterPanel(String title, int width, int height) {
         // Set Properties for the Frame
         this.setTitle(title);
-        this.setSize(width, height);
+        this.setBounds(0, 0, width, height);
         this.setBackground(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

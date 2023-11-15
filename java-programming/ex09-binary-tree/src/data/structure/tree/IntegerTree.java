@@ -130,7 +130,7 @@ public class IntegerTree extends TreeStructure<Integer> {
         // Traverse Tree
         this.traverseInorder();
 
-        // Draw Tree
+        // Draw Tree to console
         Logger.logMessage("Tree: ", this);
         TreePrinter.printNode(this.root);
         Logger.logMessage("*** END ***", this);

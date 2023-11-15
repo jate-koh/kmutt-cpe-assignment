@@ -34,4 +34,20 @@ public class ButtonPanel extends Panel {
         this.add(this.clearButton);
     }
 
+    public JButton getInsertButton() {
+        return this.insertButton;
+    }
+
+    public JButton getDeleteButton() {
+        return this.deleteButton;
+    }
+
+    public JButton getSearchButton() {
+        return this.searchButton;
+    }
+
+    public JButton getClearButton() {
+        return this.clearButton;
+    }
+
 }

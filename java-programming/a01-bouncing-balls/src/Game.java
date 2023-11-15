@@ -12,7 +12,7 @@ public class Game {
         this.outerPanel = new OuterPanel(title, width, height);
 
         // Create a GamePanel object
-        this.gamePanel = new GamePanel(10,10, width - 20, height - 20);
+        this.gamePanel = new GamePanel(0,0, width, height);
 
         // Add the GamePanel object to the OuterPanel object
         this.outerPanel.addPanel(this.gamePanel);
@@ -26,11 +26,12 @@ public class Game {
         if (gameBackground != null ) this.gamePanel.changeColor(gameBackground);
     }
 
-    public void setupSpawner(int maxDiameter, int maxSpeed) {
+    public void setupSpawner(int maxDiameter, int minDiameter, int maxSpeed) {
 
         // Create a Spawner object
         InternalSpawner spawner = new InternalSpawner();
         spawner.setMaxDiameter(maxDiameter);
+        spawner.setMinDiameter(minDiameter);
         spawner.setMaxVelocity(maxSpeed);
         spawner.setFrame(this.gamePanel);
 
