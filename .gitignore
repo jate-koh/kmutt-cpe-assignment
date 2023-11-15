@@ -18,5 +18,19 @@
 # Java
 *.jar
 .classpath
-/.settings/
-/bin/
+**/.settings/
+**/bin/
+**/META-INF/
+
+# Embedded Systems
+# build
+/embed-sys/**/build/
+/embed-sys/**/dist/
+/embed-sys/**/.generated_files
+/embed-sys/**/nbproject/
+
+# doc
+/embed-sys/doc/
+
+# lib
+/embed-sys/lib/
